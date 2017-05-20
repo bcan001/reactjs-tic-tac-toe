@@ -1,7 +1,27 @@
 class Board extends React.Component {
+  // lift the state of the squares to the be controlled by the board, not by the squares
+  constructor() {
+    super();
+    this.state = {
+      // [null, null, null, null, null, null, null, null, null]
+      squares: Array(9).fill(null),
+    };
+  }
+
+  // handles the click of the square.
+  handleClick(i) {
+    // copy the current squares array when the button is clicked
+    const squares = this.state.squares.slice();
+    squares[i] = 'X';
+    this.setState({squares: squares});
+  }
+
   renderSquare(i) {
+    // return <Square value={i} />;
     // pass values from board component into the square component
-    return <Square value={i} />;
+    // return <Square value={this.state.squares[i]} />;
+    // the board is now handling the clicks, so pass the click method from the board to the square (value and onClick are props that are being handed down to the square)
+    return (<Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />);
   }
 
   render() {
