@@ -1,0 +1,53 @@
+<div class="row ctr">
+	<h3>FOOD IN YOUR NEIGHBORHOOD</h3>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns">
+		<% if flash[:notice] %>
+		  <p class="notice" style="color:red;"><%= flash[:notice] %></p>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-offset-4 columns">
+		<%= form_tag restaurants_path, :method => 'get' do %>
+		  <%= hidden_field_tag :current_user_location, '' %>
+		  <%= text_field_tag :search, params[:search] %>
+		  <%= submit_tag "Find Food Now", :name => 'find_food_based_on_search', class: "button light" %>
+		  <%= submit_tag "Decide For Me", :name => 'find_food_based_on_history', class: "button light" %>
+		<% end %>
+	</div>
+</div>
+
+<div class="row">
+	<div class="medium-12 columns ctr">
+		<hr>
+	</div>
+</div>
+
+<div class="row ctr">
+	<h4>RESTAURANTS OF THE DAY</h4>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
