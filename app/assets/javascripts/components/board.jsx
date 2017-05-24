@@ -3,29 +3,43 @@ class Board extends React.Component {
   constructor() {
     super();
     this.state = {
-      // [null, null, null, null, null, null, null, null, null]
       squares: Array(9).fill(null),
+      // taking turns (gets toggled with every click of the board)
+      xIsNext: true,
     };
   }
 
   // handles the click of the square.
   handleClick(i) {
-    // copy the current squares array when the button is clicked
     const squares = this.state.squares.slice();
-    squares[i] = 'X';
-    this.setState({squares: squares});
+    // exit game if someone has won
+    if (calculateWinner(squares) || squares[i]) {
+      return;
+    }
+    // squares[i] = 'X';
+    squares[i] = this.state.xIsNext ? 'X' : 'O';
+    this.setState({
+      squares: squares,
+      // toggle turns to true or false
+      xIsNext: !this.state.xIsNext,
+    });
   }
 
   renderSquare(i) {
-    // return <Square value={i} />;
-    // pass values from board component into the square component
-    // return <Square value={this.state.squares[i]} />;
-    // the board is now handling the clicks, so pass the click method from the board to the square (value and onClick are props that are being handed down to the square)
     return (<Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />);
   }
 
   render() {
-    const status = 'Next player: X';
+    // const status = 'Next player: X';
+    
+    const winner = calculateWinner(this.state.squares);
+    let status;
+    if (winner) {
+      status = 'Winner: ' + winner;
+    } else {
+      // toggle between x and o
+      status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+    }
 
     return (
       <div>
@@ -49,3 +63,25 @@ class Board extends React.Component {
     );
   }
 };
+
+
+
+function calculateWinner(squares) {
+  const lines = [
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [0, 4, 8],
+    [2, 4, 6],
+  ];
+  for (let i = 0; i < lines.length; i++) {
+    const [a, b, c] = lines[i];
+    if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
+      return squares[a];
+    }
+  }
+  return null;
+}
