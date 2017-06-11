@@ -1,8 +1,6 @@
-class Game
+class Game < ApplicationRecord
 	
-	def initialize(args)	
 
-	end
 
 
 end

@@ -1,0 +1,8 @@
+class Board < ApplicationRecord
+	
+
+
+
+end
+
+
