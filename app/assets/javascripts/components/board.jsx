@@ -1,6 +1,14 @@
 class Board extends React.Component {
   // lift the state of the squares to the be controlled by the board, not by the squares
-  // state is lifted once again to the game, so it can store history
+  constructor(props) {
+    super(props);
+    console.log(JSON.parse(this.props.game));
+    this.state = {
+      squares: JSON.parse(this.props.game).board,
+      // taking turns (gets toggled with every click of the board)
+      xIsNext: true,
+    };
+  }
 
   // handles the click of the square.
   handleClick(i) {
@@ -35,13 +43,7 @@ class Board extends React.Component {
   }
 
   renderSquare(i) {
-    // send props to square when state is lifted from board to the game
-    return (
-      <Square
-        value={this.props.squares[i]}
-        onClick={() => this.props.onClick(i)}
-      />
-    );
+    return (<Square value={this.state.squares[i]} onClick={() => this.handleClick(i)} />);
   }
 
   render() {
