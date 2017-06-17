@@ -1,9 +1,10 @@
 class Board extends React.Component {
   // lift the state of the squares to the be controlled by the board, not by the squares
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
+    console.log(JSON.parse(this.props.game));
     this.state = {
-      squares: Array(9).fill(null),
+      squares: JSON.parse(this.props.game).board,
       // taking turns (gets toggled with every click of the board)
       xIsNext: true,
     };

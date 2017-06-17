@@ -2,10 +2,9 @@ class GamesController < ApplicationController
 	skip_before_action :verify_authenticity_token
 
 	def index
-		# https://facebook.github.io/react/tutorial/tutorial.html
+		@game = {board: [nil,nil,nil,nil,nil,nil,nil,nil,nil]}
+		
 
-		# https://codepen.io/gaearon/pen/oWWQNa?editors=0010
-	
 
 	end
 
@@ -28,4 +27,5 @@ class GamesController < ApplicationController
 end
 
 
-
+# https://facebook.github.io/react/tutorial/tutorial.html
+# https://codepen.io/gaearon/pen/oWWQNa?editors=0010
