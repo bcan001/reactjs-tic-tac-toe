@@ -6,15 +6,6 @@ class Board extends React.Component {
   handleClick(i) {
     const squares = this.state.squares.slice();
 
-    $.ajax({
-        url: '/games',
-        type: 'POST',
-        data: {square: i},
-        success: (response) => {
-          console.log('it worked!', response);
-        }
-    });
-
     // exit game if someone has won
     if (calculateWinner(squares) || squares[i]) {
       return;
@@ -22,6 +13,19 @@ class Board extends React.Component {
 
     // squares[i] = 'X';
     squares[i] = this.state.xIsNext ? 'X' : 'O';
+
+    $.ajax({
+        url: '/games',
+        type: 'POST',
+        data: {
+          position: i,
+          square: squares[i]
+        },
+        success: (response) => {
+          console.log('it worked!', response);
+        }
+    });
+
 
     this.setState({
       squares: squares,

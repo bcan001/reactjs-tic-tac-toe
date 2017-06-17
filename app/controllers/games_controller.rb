@@ -10,7 +10,9 @@ class GamesController < ApplicationController
 	end
 
 	def create
-		binding.pry
+		# binding.pry
+		# params[:position] # 0, 1,2 etc.
+		# params[:square] # X or O
 
 		respond_to do |format|
 			format.html
