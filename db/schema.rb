@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20170617044931) do
   end
 
   create_table "games", force: :cascade do |t|
+    t.string "name"
   end
 
   create_table "squares", force: :cascade do |t|

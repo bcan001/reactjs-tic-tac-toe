@@ -1,6 +1,12 @@
 <%= link_to 'sign_out', destroy_user_session_path, :method => :delete %>
 
 
+<%= form_tag games_path, method: :get do %>
+	<%= hidden_field_tag :new_game, 'new_game' %>
+	<%= submit_tag 'New Game' %>
+<% end %>
+
+
 <div class="row">
 	<div class="medium-12 columns">
 		<%= react_component("Game", {initial_game: @game.to_json}) %>
