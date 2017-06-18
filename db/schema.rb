@@ -10,13 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170330040533) do
+ActiveRecord::Schema.define(version: 20170617044931) do
 
-  create_table "locations", force: :cascade do |t|
-    t.float    "latitude"
-    t.float    "longitude"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "boards", force: :cascade do |t|
+    t.string  "winner"
+    t.boolean "x_is_next", default: true
+    t.integer "game_id"
+  end
+
+  create_table "games", force: :cascade do |t|
+    t.string "name"
+  end
+
+  create_table "squares", force: :cascade do |t|
+    t.integer "board_id"
+    t.string  "value"
+    t.string  "position"
   end
 
   create_table "users", force: :cascade do |t|
