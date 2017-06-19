@@ -53,6 +53,18 @@ class GamesController < ApplicationController
 
 		Square.find_by(position: params[:position]).update_attributes(value: params[:square])
 
+		@square_count = 0
+		@squares = []
+		@board.squares.each do |square|
+			@squares << square.value
+		end
+		@x_is_next = @board.x_is_next
+
+		# broadcast all changes via websockets
+		ActionCable.server.broadcast 'players',
+      {board: @squares, x_is_next: @x_is_next}
+    head :ok
+
 
 		respond_to do |format|
 			format.html
