@@ -19,6 +19,7 @@
 //= require react
 //= require react_ujs
 //= require components
+//= require_tree ./channels
 //= require_tree .
 
 $(function(){ $(document).foundation(); });
