@@ -21,8 +21,10 @@ class GamesController < ApplicationController
 				@square.save
 				@squares << @square.value
 			end
-
-			@game = {board: @squares}
+			
+			@board.update_attributes(x_is_next: 'true')
+			@x_is_next = @board.x_is_next
+			@game = {board: @squares, x_is_next: @x_is_next}
 
 		else
 			@game = Game.first
@@ -34,7 +36,8 @@ class GamesController < ApplicationController
 				@squares << square.value
 			end
 
-			@game = {board: @squares}
+			@x_is_next = @board.x_is_next
+			@game = {board: @squares, x_is_next: @x_is_next}
 		end
 		
 	end
@@ -44,6 +47,9 @@ class GamesController < ApplicationController
 		# params[:position] # 0, 1,2 etc.
 		# params[:square] # X or O
 
+		@game = Game.first
+		@board = @game.board
+		@board.x_is_next == true ? @board.update_attributes(x_is_next: false) : @board.update_attributes(x_is_next: true)
 
 		Square.find_by(position: params[:position]).update_attributes(value: params[:square])
 
