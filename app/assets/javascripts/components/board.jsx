@@ -6,7 +6,7 @@ class Board extends React.Component {
     this.state = {
       squares: JSON.parse(this.props.game).board,
       // taking turns (gets toggled with every click of the board)
-      xIsNext: true,
+      xIsNext: JSON.parse(this.props.game).x_is_next
     };
   }
 
@@ -33,7 +33,6 @@ class Board extends React.Component {
           console.log('it worked!', response);
         }
     });
-
 
     this.setState({
       squares: squares,
