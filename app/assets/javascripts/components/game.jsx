@@ -2,29 +2,26 @@ class Game extends React.Component {
 
   constructor(props) {
     super(props);
-    console.log(this);
+    // console.log(this);
 
     this.state = {
       game: this.props.initial_game
     };
-    // this.handleChange = this.handleChange.bind(this);
   }
 
-  // handleChange(event) {
-  //   this.setState({ game: event.currentTarget.value });
-  // }
 
+  // http://dramaku.me/news/Making-ReactJS-Realtime-With-Websockets/
   componentDidMount() {
     this.setupSubscription();
   }
 
   updateGame(game) {
     // console.log('test1');
-    console.log(game);
-    console.log(this);
+    // console.log(game);
+    // console.log(this);
 
-    let gameUpdate = game;
-    this.setState({game: gameUpdate});
+    // let gameUpdate = game;
+    this.setState({game: game});
 
     console.log(this.state.game);
 
